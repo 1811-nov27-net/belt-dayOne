@@ -2,10 +2,31 @@
 
 namespace Animals.library
 {
-    public class Dog
+    public class Dog : IAnimal
     {
-        public string Name;
-        public string Breed { get; set;}
+        public string Name 
+        {
+            get
+            {
+                return "Bob";
+            }
+            set
+            {
+                Console.WriteLine("inside property setter");
+            }
+        }
+        private string _breed;
+        public string Breed 
+        { 
+            get { return _breed; } 
+            set 
+            {
+                if (value != null && value != "")
+                {
+                    _breed = value;
+                }
+            }
+        }
         private int _age;
         public int Age
         {
@@ -33,6 +54,17 @@ namespace Animals.library
         public void Bark()
         {
             Console.WriteLine("Woof");
+        }
+
+        public void MakeSound()
+        {
+            Bark();
+        }
+
+        public void GoTo(string location)
+        {
+            string output = $"Walking to {location}.";
+            Console.WriteLine(output);
         }
     }
 }
