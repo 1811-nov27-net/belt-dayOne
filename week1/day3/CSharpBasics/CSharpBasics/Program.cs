@@ -52,7 +52,7 @@ namespace CSharpBasics
             }
             List<string> list = new List<string>();
             list.Add("List contents");
-
+            list.
             foreach(var item in list)
             {
                 //snippet: cw
