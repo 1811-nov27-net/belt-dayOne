@@ -8,17 +8,12 @@ namespace LINQAndTesting.Library
     /// a list with some extra helper methods
     /// </summary>
     /// inheritance or composition
-    public class MyCollection
+    public class MyCollection : MyGenericCollection<string>
     {
-        private readonly List<string> _list = new List<string>();
+        //private readonly List<string> _list = new List<string>(); became redundant
         public int Length { get { return _list.Count; } }
 
-        public void Sort()
-        {
-            _list.Sort();
-        }
-
-        public void Add(string item)
+        public override void Add(string item)
         {
             _list.Add(item);
         }
@@ -61,6 +56,12 @@ namespace LINQAndTesting.Library
         public int NumberWithVowels()
         {
             return _list.Count(ContainsVowel);
+        }
+        public string FirstAlphabetical()
+        {
+            IEnumerable<string> sorted = _list.OrderBy(x => x);
+            var first = sorted.First();
+            return first;
         }
     }
 }
