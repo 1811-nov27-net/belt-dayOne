@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<ArrayOfPerson xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Person>
+    <id>12</id>
+    <name>
+      <firstName>William</firstName>
+      <middleName>Wortham</middleName>
+      <lastName>Belt</lastName>
+    </name>
+    <nicknames>
+      <string>Will</string>
+      <string>Liam</string>
+    </nicknames>
+    <address>
+      <street>709 W Cooper</street>
+      <city>Arlington</city>
+      <state>Texas</state>
+      <country>USA</country>
+    </address>
+    <age>30</age>
+  </Person>
+</ArrayOfPerson>
