@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Delegates
 {
@@ -6,6 +8,7 @@ namespace Delegates
     {
         static void Main(string[] args)
         {
+            LINQ();
             var player = new MoviePlayer
             {
                 CurrentMovie = "Lord of the Rings: Fellowship of the Ring Extended Edition"
@@ -48,6 +51,41 @@ namespace Delegates
         static void EjectDisc(string title)
         {
             Console.WriteLine("Ejecting Disc");
+        }
+
+        static void LINQ()
+        {
+            var x = new List<string>();
+
+            x.Max(s => s.Length);
+
+            var firstCharacters = x.Select(s => s[0]);
+
+            bool allShorterThan5Chars = x.All(s => s.Length < 5);
+
+            var onlyTheLongElements = x.Where(s => s.Length > 20);
+
+            bool b = x.Where(s => s.Length > 20).Select(s => s[0]).All(c => c == 'a' || c == 'b');
+
+            List<char> listOfChars = firstCharacters.ToList();
+        }
+        
+        static void Finally()
+        {
+            try
+            {
+                Console.WriteLine("try");
+            }
+            catch (ArgumentException e)
+            {
+                // runs in case of exception
+                // case specific clean up here
+            }
+            finally
+            {
+                // runs no matter what: caught exception, uncaught exception, no exception
+                // general cleanup here
+            }
         }
     }
 }
