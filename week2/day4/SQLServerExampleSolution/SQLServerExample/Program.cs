@@ -6,7 +6,13 @@ namespace SQLServerExample
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            // ADO.NET == Umbrella Name for data-related libraries
+            // Ususally refers to older way: DataReader, DataAdapter objects.
+
+            //In code, use "connection string" to contain Server URL, Login, password
+            var connectionString = SecretConfiguration.connectionString;
+
+            var commandString = "SELECT * FROM Movies.Movie";
         }
     }
 }
