@@ -52,6 +52,10 @@ namespace EFDBFirstDemo.DataAccess
 
         public Movie GetMovieByName(string name)
         {
+            /*foreach (var movie in Db.Movie.ToList())
+                if (movie.Name == name)
+                    return movie;
+            return null;*/
             return Db.Movie.First(m => m.Name == name);
         }
 
