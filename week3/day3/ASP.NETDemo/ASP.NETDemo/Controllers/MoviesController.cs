@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ASP.NETDemo.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,16 +10,17 @@ namespace ASP.NETDemo.Controllers
 {
     public class MoviesController : Controller
     {
+        public static MovieRepo repo = new MovieRepo();
         // GET: Movies
         public ActionResult Index()
         {
-            return View();
+            return View(repo.GetAll());
         }
 
         // GET: Movies/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            return View(repo.GetById(id));
         }
 
         // GET: Movies/Create

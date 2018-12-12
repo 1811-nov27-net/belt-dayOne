@@ -1,0 +1,40 @@
+﻿using ASP.NETDemo.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace ASP.NETDemo.Repositories
+{
+    public class MovieRepo
+    {
+        private List<Movie> _movies = new List<Movie>()
+        {new Movie(){Id = 0, Title = "Star Wars", ReleaseDate = new DateTime(1977, 3, 17) },
+        new Movie(){Id = 1, Title = "Lord of the Rings", ReleaseDate = new DateTime(2003, 3, 17) }};
+
+        public IEnumerable<Movie> GetAll()
+        {
+            return _movies;
+        }
+
+        public Movie GetById(int id)
+        {
+            return _movies.First(m => m.Id == id);
+        }
+
+        public void DeleteMovie(int id)
+        {
+            var movie = GetById(id);
+            _movies.Remove(movie);
+        }
+
+        public void CreateMovie(Movie movie)
+        {
+            if (_movies.Any(m=>m.Id == movie.Id))
+            {
+                throw new ArgumentException($"Duplicate ID {movie.Id}");
+            }
+            _movies.Add(movie);
+        }
+    }
+}

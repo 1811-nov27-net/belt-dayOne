@@ -20,6 +20,11 @@ namespace ASP.NETDemo.Controllers
             return View();
         }
 
+        public IActionResult Movies()
+        {
+            return View(new Movie());
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
