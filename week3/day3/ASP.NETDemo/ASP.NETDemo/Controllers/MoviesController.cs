@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ASP.NETDemo.Models;
 using ASP.NETDemo.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -10,7 +11,13 @@ namespace ASP.NETDemo.Controllers
 {
     public class MoviesController : Controller
     {
-        public static MovieRepo repo = new MovieRepo();
+        //public static MovieRepo repo = new MovieRepo();
+        public IMovieRepo repo;
+
+        public MoviesController(IMovieRepo Repo)
+        {
+            repo = Repo;
+        }
         // GET: Movies
         public ActionResult Index()
         {
@@ -32,13 +39,24 @@ namespace ASP.NETDemo.Controllers
         // POST: Movies/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Movie newMovie)
         {
             try
             {
-                // TODO: Add insert logic here
-
+                if (ModelState.IsValid)
+                {
+                    repo.CreateMovie(newMovie);
+                }
+                else
+                {
+                    return View();
+                }
                 return RedirectToAction(nameof(Index));
+            }
+            catch(ArgumentException ex)
+            {
+                ModelState.AddModelError("Id", ex.Message);
+                return View();
             }
             catch
             {
@@ -49,17 +67,34 @@ namespace ASP.NETDemo.Controllers
         // GET: Movies/Edit/5
         public ActionResult Edit(int id)
         {
+            var movie = repo.GetById(id);
+            if (movie != null)
+            {
+                return View(movie);
+            }
             return View();
         }
 
         // POST: Movies/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Movie movie)
         {
             try
             {
-                // TODO: Add update logic here
+                if(id != movie.Id)
+                {
+                    ModelState.AddModelError("id", "doesn't match movie id");
+                    return View();
+                }
+                if(ModelState.IsValid)
+                {
+                    repo.EditMovie(movie);
+                }
+                else
+                {
+                    return View();
+                }
 
                 return RedirectToAction(nameof(Index));
             }
@@ -72,7 +107,12 @@ namespace ASP.NETDemo.Controllers
         // GET: Movies/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var movie = repo.GetById(id);
+            if (movie != null)
+            {
+                return View(movie);
+            }
+            return RedirectToAction(nameof(Index));
         }
 
         // POST: Movies/Delete/5
@@ -82,7 +122,7 @@ namespace ASP.NETDemo.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
+                var success = repo.DeleteMovie(id);
 
                 return RedirectToAction(nameof(Index));
             }

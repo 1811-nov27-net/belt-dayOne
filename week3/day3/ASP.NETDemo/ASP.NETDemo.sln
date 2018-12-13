@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.106
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASP.NETDemo", "ASP.NETDemo\ASP.NETDemo.csproj", "{B9D30DC1-277E-4668-8E12-05580448CF86}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASP.NETDemo", "ASP.NETDemo\ASP.NETDemo.csproj", "{B9D30DC1-277E-4668-8E12-05580448CF86}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MVCDemo.DataAccess", "MVCDemo.DataAccess\MVCDemo.DataAccess.csproj", "{2504F0D2-8CCE-44AE-9040-07C55941629B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{B9D30DC1-277E-4668-8E12-05580448CF86}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9D30DC1-277E-4668-8E12-05580448CF86}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9D30DC1-277E-4668-8E12-05580448CF86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2504F0D2-8CCE-44AE-9040-07C55941629B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2504F0D2-8CCE-44AE-9040-07C55941629B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2504F0D2-8CCE-44AE-9040-07C55941629B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2504F0D2-8CCE-44AE-9040-07C55941629B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
