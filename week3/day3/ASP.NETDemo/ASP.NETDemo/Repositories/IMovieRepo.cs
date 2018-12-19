@@ -13,5 +13,6 @@ namespace ASP.NETDemo.Repositories
         void EditMovie(Movie movie);
         IEnumerable<Movie> GetAll();
         Movie GetById(int id);
+        IEnumerable<Movie> GetAllByCastMember(string cast);
     }
 }

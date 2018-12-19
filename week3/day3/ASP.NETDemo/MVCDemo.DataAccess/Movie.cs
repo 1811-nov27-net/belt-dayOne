@@ -12,6 +12,6 @@ namespace MVCDemo.DataAccess
         [StringLength(50)]
         public string Title { get; set; }
         public DateTime ReleaseDate { get; set; }
-        public virtual ICollection<CastMember> CastMembers { get; set; }
+        public virtual ICollection<MovieCastMemberJunction> CastMemberJunctions { get; set; }
     }
 }

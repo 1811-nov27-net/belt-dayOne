@@ -42,5 +42,10 @@ namespace ASP.NETDemo.Repositories
             DeleteMovie(movie.Id);
             CreateMovie(movie);
         }
+
+        public IEnumerable<Movie> GetAllByCastMember(string cast)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

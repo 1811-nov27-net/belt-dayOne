@@ -1,19 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
-using ASP.NETDemo.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MVCDemo.DataAccess;
 
-namespace ASP.NETDemo
+namespace TemperatureWebsite
 {
     public class Startup
     {
@@ -34,8 +32,8 @@ namespace ASP.NETDemo
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddScoped<IMovieRepo, MovieRepoDB>();
-            services.AddDbContext<MovieDBContext>(optionsBuilder => optionsBuilder.UseSqlServer(Configuration.GetConnectionString("DB")));
+            services.AddSingleton<HttpClient>();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
@@ -59,11 +57,6 @@ namespace ASP.NETDemo
 
             app.UseMvc(routes =>
             {
-                routes.MapRoute(
-                    name: "cast",
-                    template: "Actors/{name}",
-                    defaults: new { controller = "Cast", action = "Index" });
-
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
