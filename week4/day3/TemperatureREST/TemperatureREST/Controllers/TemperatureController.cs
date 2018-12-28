@@ -34,9 +34,10 @@ namespace TemperatureREST.Controllers
 
         // POST: api/Temperature
         [HttpPost]
-        public void Post([FromBody] Temperature value)
+        public ActionResult Post([FromBody] Temperature value)
         {
             Data.Add(value);
+            return Created($"https://localhost:44371/api/Temperature/{value.ID}", value);
         }
 
         // PUT: api/Temperature/5
@@ -51,7 +52,7 @@ namespace TemperatureREST.Controllers
             Data.Remove(existing);
             value.ID = id;
             Data.Add(value);
-            return Ok();
+            return NoContent();
         }
 
         // DELETE: api/ApiWithActions/5
@@ -64,7 +65,7 @@ namespace TemperatureREST.Controllers
                 return NotFound();
             }
             Data.Remove(existing);
-            return Ok();
+            return NoContent();
         }
     }
 }
